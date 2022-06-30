@@ -1,16 +1,16 @@
 import express from "express";
-import sql from "./db";
+import usersRouter from "./routes/users";
+import workOrdersRouter from "./routes/work-orders";
+import workOrdersAssignees from "./routes/work-order-assignees";
+import { BackendUrl } from "./url";
 const app = express();
-const router = express.Router();
 
 app.use(express.json());
 
-router.post("/example", async (req, res) => {
-  const response = await sql("SELECT * FROM users WHERE id = ?", Number(req.body.id) || 9);
-  const favorite = response[0];
-  return res.json({ favorite });
+app.use(BackendUrl.users, usersRouter);
+app.use(BackendUrl.workOrders, workOrdersRouter);
+app.use(BackendUrl.workOrdersAssignees, workOrdersAssignees);
+
+app.listen(4000, () => {
+  console.log("Server running on port 4000");
 });
-
-app.use("/api", router);
-
-app.listen(4000);
