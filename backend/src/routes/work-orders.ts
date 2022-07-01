@@ -1,7 +1,7 @@
 import express from "express";
 
 import { selectItem, selectItems } from "../sqlite/client";
-import { BackendUrl } from "../url";
+import { routesPath } from "../url";
 import { consoleOutPut } from "../utils/console-out-put";
 import { getDate } from "../utils/get-date";
 import { MethodType, TableName } from "../utils/types";
@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
   consoleOutPut({
     date: getDate(),
     method: MethodType.GET,
-    path: BackendUrl.workOrders,
+    path: routesPath.workOrders,
     status: res.statusCode,
   });
 });
@@ -30,7 +30,7 @@ router.get("/workOrderId/:id", async (req, res) => {
   consoleOutPut({
     date: getDate(),
     method: MethodType.GET,
-    path: BackendUrl.workOrders,
+    path: routesPath.workOrders,
     status: res.statusCode,
   });
 });
