@@ -25,10 +25,6 @@ const ToggleSwitch: React.FC<Props> = ({ status, id }) => {
       newStatus = StatusType.OPEN;
     }
     WorkOrdersServices.updateWorkOrderStatus({ id, status: newStatus });
-    refresh();
-  };
-  const refresh = () => {
-    WorkOrdersServices.getWorkOrder(id);
   };
 
   return (
