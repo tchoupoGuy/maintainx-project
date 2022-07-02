@@ -1,25 +1,27 @@
 import express from "express";
 
-import { selectItem, selectItems } from "../sqlite/client";
+import { selectItem, selectItems, updateItem } from "../sqlite/client";
 import { routesPath } from "../urls";
 import { consoleOutPut } from "../utils/console-out-put";
 import { getDate } from "../utils/get-date";
-import { MethodType, TableName } from "../utils/types";
+import { TableName } from "../utils/types";
 
 const router = express.Router();
 
+// Endpoint to fetch all the work orders in the data base
 router.get(routesPath.defaultPath, async (req, res) => {
   const workOrders = await selectItems({ tableName: TableName.WORK_ORDERS });
 
   res.json(workOrders);
   consoleOutPut({
     date: getDate(),
-    method: MethodType.GET,
-    path: routesPath.workOrders,
+    method: req.method,
+    path: req.path,
     status: res.statusCode,
   });
 });
 
+// Endpoint to get the work order with all details in the data base
 router.get(routesPath.workOrder, async (req, res) => {
   // Get list of users
   const allUsers = await selectItems({
@@ -54,8 +56,31 @@ router.get(routesPath.workOrder, async (req, res) => {
 
   consoleOutPut({
     date: getDate(),
-    method: MethodType.GET,
-    path: routesPath.workOrders,
+    method: req.method,
+    path: req.path,
+    status: res.statusCode,
+  });
+});
+
+router.patch(routesPath.updateWorkOrderStatus, async (req, res) => {
+  const workOrder = await selectItem({
+    tableName: TableName.WORK_ORDERS,
+    id: Number(req.params.id),
+  });
+
+  if (workOrder) {
+    await updateItem({
+      tableName: TableName.WORK_ORDERS,
+      item: "status",
+      newItem: req.params.status,
+      id: Number(req.params.id),
+    });
+  }
+
+  consoleOutPut({
+    date: getDate(),
+    method: req.method,
+    path: req.path,
     status: res.statusCode,
   });
 });

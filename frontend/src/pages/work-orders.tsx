@@ -13,7 +13,7 @@ const WorkOrders: React.FC = () => {
       setWorkOrders(result);
     });
   }, []);
-  console.log(workOrders, "workOrders");
+
   return (
     <>
       <Link style={{ padding: 8 }} to={frontendUrl.home}>

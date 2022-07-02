@@ -1,4 +1,5 @@
-import React from "react";
+import ToggleSwitch from "components/toggle-switch";
+import React, { useMemo } from "react";
 import { User, WorkOrder } from "utils/types";
 
 interface Props {
@@ -10,11 +11,18 @@ export const WorkOrdersDetailsTableBody: React.FC<Props> = ({
   users,
   workOrder,
 }) => {
+  const workOrderStatus = useMemo(() => {
+    return <ToggleSwitch id={workOrder.id} status={workOrder?.status} />;
+  }, [workOrder?.id, workOrder?.status]);
+
   return (
     <tbody className="work-orders-tbody">
       <tr className="work-orders-tr">
         <td className="work-orders-td">{workOrder?.name}</td>
-        <td className="work-orders-td">{workOrder?.status}</td>
+        <td className="work-orders-td">
+          {/* {workOrder?.status} */}
+          {workOrderStatus}
+        </td>
       </tr>
       <tr className="work-orders-tr">
         <th className="work-orders-th" colSpan={2}>
@@ -37,7 +45,7 @@ export const WorkOrdersDetailsTableBody: React.FC<Props> = ({
                 );
               })
             ) : (
-              <div>No assignees user</div>
+              <div>No users</div>
             )}
           </ul>
         </td>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { frontendUrl } from "urls";
 
 const Home: React.FC = () => {
-  debugger;
   return (
     <>
       <p>

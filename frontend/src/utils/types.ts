@@ -25,3 +25,13 @@ export interface WorkOrderAssignees {
   work_order_id: number;
   user_id: number;
 }
+
+export type ToggleSwitchType = {
+  isOpen?: boolean;
+  status: StatusType;
+};
+
+export type updateWorkOrderInput = {
+  id: number;
+  status: string;
+};

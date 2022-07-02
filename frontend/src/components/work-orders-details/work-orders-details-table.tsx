@@ -7,6 +7,7 @@ interface Props {
 }
 
 const WorkOrdersDetailsTable: React.FC<Props> = ({ workOrderDetails }) => {
+  console.log(workOrderDetails, "workOrder");
   return (
     <>
       <div>

@@ -6,15 +6,14 @@ import { frontendUrl } from "urls";
 import { GenericObject, WorkOrderDetailsType } from "utils/types";
 
 const WorkOrderDetails: React.FC = () => {
-  let { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>();
+
   const [workOrderDetails, setWorkOrderDetails] = useState<
     WorkOrderDetailsType | GenericObject
   >({});
   useEffect(() => {
     if (id) {
-      let workOrderId: number = Number(id);
-
-      WorkOrdersServices.getWorkOrder(workOrderId).then(
+      WorkOrdersServices.getWorkOrder(Number(id)).then(
         (result: GenericObject) => {
           setWorkOrderDetails(result);
         }
@@ -22,8 +21,6 @@ const WorkOrderDetails: React.FC = () => {
     }
   }, [id]);
 
-  console.log(workOrderDetails, "workOrder");
-  console.log(id, "id");
   return (
     <>
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -35,7 +32,7 @@ const WorkOrderDetails: React.FC = () => {
         </Link>
       </div>
       <div>
-        {workOrderDetails ? (
+        {Object.keys(workOrderDetails).length > 0 ? (
           <WorkOrdersDetailsTable workOrderDetails={workOrderDetails} />
         ) : null}
       </div>

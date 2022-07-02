@@ -1,4 +1,5 @@
 import { backendUrl } from "urls";
+import { StatusType, updateWorkOrderInput } from "utils/types";
 
 class WorkOrdersServices {
   static getWorkOrders = async () => {
@@ -6,6 +7,7 @@ class WorkOrdersServices {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     };
+
     return await fetch(backendUrl.workOrders, { ...requestOptions })
       .then(async (response: any) => {
         return await response.json();
@@ -19,9 +21,32 @@ class WorkOrdersServices {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     };
+
     return await fetch(`${backendUrl.workOrders}/workOrderId/${id}`, {
       ...requestOptions,
     })
+      .then(async (response: any) => {
+        return await response.json();
+      })
+      .catch((Error) => {
+        throw new Error("Something went wrong in ", Error);
+      });
+  };
+  static updateWorkOrderStatus = async ({
+    id,
+    status,
+  }: updateWorkOrderInput) => {
+    const requestOptions = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+    };
+
+    return await fetch(
+      `${backendUrl.workOrders}/workOrderId/${id}/status/${status}`,
+      {
+        ...requestOptions,
+      }
+    )
       .then(async (response: any) => {
         return await response.json();
       })

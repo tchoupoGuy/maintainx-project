@@ -1,17 +1,8 @@
-import { Link } from "react-router-dom";
+import Home from "pages/home";
 
-import { frontendUrl } from "../../urls";
+import { frontendUrl } from "urls";
 import { CustomRoute } from "./types";
-function Home() {
-  return (
-    <>
-      <p>
-        Take me to the <Link to={frontendUrl.workOrders}>Work Orders Page</Link>
-        .
-      </p>
-    </>
-  );
-}
+
 const HOME_ROUTES: CustomRoute[] = [
   {
     //Home

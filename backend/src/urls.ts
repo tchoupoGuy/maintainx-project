@@ -7,4 +7,5 @@ export const routesPath = {
   workOrder: "/workOrderId/:id",
   user: "/userId/:id",
   defaultPath: "/",
+  updateWorkOrderStatus: "/workOrderId/:id/status/:status",
 };
