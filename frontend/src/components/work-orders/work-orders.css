@@ -20,3 +20,7 @@
 .work-orders-link:hover {
   text-decoration: underline;
 }
+
+.work-orders-li {
+  cursor: pointer;
+}

@@ -10,6 +10,10 @@ export interface WorkOrder {
   name: string;
   status: StatusType;
 }
+export interface WorkOrderDetailsType {
+  workOrder: WorkOrder;
+  users: User[];
+}
 
 export interface User {
   id: number;

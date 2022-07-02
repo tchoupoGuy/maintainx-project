@@ -42,13 +42,13 @@ router.get(routesPath.workOrder, async (req, res) => {
   );
 
   // Get work order by id
-  const workOrders = await selectItem({
+  const workOrder = await selectItem({
     tableName: TableName.WORK_ORDERS,
     id: Number(req.params.id),
   });
 
   res.json({
-    workOrders,
+    workOrder,
     users,
   });
 
