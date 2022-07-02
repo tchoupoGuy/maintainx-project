@@ -4,7 +4,6 @@ import { GenericObject } from "../utils/types";
 type ItemType = {
   tableName: string;
   id?: number;
-  data?: any;
 };
 
 export const selectItems = async (params: ItemType) => {

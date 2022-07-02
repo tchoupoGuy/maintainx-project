@@ -14,6 +14,21 @@ class WorkOrdersServices {
         throw new Error("Something went wrong in ", Error);
       });
   };
+  static getWorkOrder = async (id: number) => {
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
+    return await fetch(`${backendUrl.workOrders}/workOrderId/${id}`, {
+      ...requestOptions,
+    })
+      .then(async (response: any) => {
+        return await response.json();
+      })
+      .catch((Error) => {
+        throw new Error("Something went wrong in ", Error);
+      });
+  };
 }
 
 export default WorkOrdersServices;

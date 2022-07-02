@@ -1,0 +1,22 @@
+.work-orders-table {
+  border-collapse: collapse;
+}
+
+.work-orders-td,
+.work-orders-th {
+  border: 1px solid #ffffff;
+  padding: 16px;
+}
+.work-orders-th {
+  background: #000;
+  border-radius: 0;
+  position: sticky;
+  top: 0;
+  padding: 8px;
+}
+.work-orders-link {
+  text-decoration: none;
+}
+.work-orders-link:hover {
+  text-decoration: underline;
+}

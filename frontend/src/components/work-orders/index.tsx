@@ -1,1 +1,1 @@
-export { default } from "./work-orders-list";
+export { default } from "./work-orders-table";

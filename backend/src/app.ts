@@ -3,7 +3,7 @@ import express from "express";
 import usersRouter from "./routes/users";
 import workOrdersRouter from "./routes/work-orders";
 import workOrdersAssignees from "./routes/work-order-assignees";
-import { routesPath } from "./url";
+import { routesPath } from "./urls";
 const app = express();
 
 app.use(express.json());
