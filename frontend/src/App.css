@@ -1,5 +1,5 @@
 .app {
-  background-color: #1887FC;
+  background-color: #1887fc;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
 }
 
 .app-body {
-  margin-top: 40px;
+  margin: 40px 0;
 }
 
 a {
