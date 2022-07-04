@@ -19,6 +19,10 @@ const WorkOrders: React.FC = () => {
       <Link style={{ padding: 8 }} to={frontendUrl.home}>
         Home
       </Link>
+
+      <Link style={{ padding: 8 }} to={`${frontendUrl.newWorkOrders}/new`}>
+        New Work Order
+      </Link>
       <WorkOrdersList workOrders={workOrders} />
     </>
   );

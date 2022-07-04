@@ -19,8 +19,8 @@ export const RenderRoutes: React.FC<Props> = ({ routes }) => {
                 return (
                   <Route
                     key={index}
-                    path={route.path}
                     exact={route.exact}
+                    path={route.path}
                     component={route.component}
                   />
                 );
