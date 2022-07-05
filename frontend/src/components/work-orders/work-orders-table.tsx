@@ -9,9 +9,6 @@ interface Props {
 export const WorkOrdersList: React.FC<Props> = ({ workOrders }) => {
   return (
     <>
-      <div>
-        <h1>Work Orders</h1>
-      </div>
       {Array.isArray(workOrders) && workOrders.length > 0 ? (
         <table className="work-orders-table">
           <thead className="work-orders-thead">

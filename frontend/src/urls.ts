@@ -10,4 +10,5 @@ export const frontendUrl = {
   home: "/",
   workOrders: "/workOrders",
   newWorkOrders: "/workOrder",
+  productivity: "/productivity",
 };

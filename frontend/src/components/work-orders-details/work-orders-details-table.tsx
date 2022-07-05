@@ -7,12 +7,8 @@ interface Props {
 }
 
 const WorkOrdersDetailsTable: React.FC<Props> = ({ workOrderDetails }) => {
-  console.log(workOrderDetails, "workOrder");
   return (
     <>
-      <div>
-        <h1>Work Orders Details</h1>
-      </div>
       <table className="work-orders-table">
         <thead className="work-orders-thead">
           <tr className="work-orders-tr">

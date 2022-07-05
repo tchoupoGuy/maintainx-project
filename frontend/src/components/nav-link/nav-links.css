@@ -1,0 +1,7 @@
+.c-nav-links {
+  display: flex;
+  align-items: center;
+}
+.c-link {
+  padding: 8px;
+}

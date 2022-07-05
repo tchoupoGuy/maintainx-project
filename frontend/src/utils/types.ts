@@ -19,6 +19,7 @@ export interface User {
   id: number;
   name: string;
   email: string;
+  status?: string;
 }
 
 export interface WorkOrderAssignees {
@@ -35,3 +36,15 @@ export type updateWorkOrderInput = {
   id: number;
   status: string;
 };
+export type NavLinksType = {
+  id: number;
+  name: string;
+  url: string;
+};
+
+export enum LinkName {
+  HOME = "Home",
+  WORK_ORDERS = "Work Orders",
+  NEW_WORK_ORDER = "New Work Order",
+  NOT_ASSIGNED_USERS = "Not assigned users",
+}

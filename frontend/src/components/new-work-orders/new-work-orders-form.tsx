@@ -34,9 +34,6 @@ const NewWorkOrdersForm = () => {
   };
   return (
     <>
-      <div>
-        <h1>New Work Order</h1>
-      </div>
       <div className="c-new-work-order-form">
         <form onSubmit={handleSubmit}>
           <div className="form-inline">

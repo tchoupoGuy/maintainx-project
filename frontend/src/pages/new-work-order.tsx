@@ -1,22 +1,15 @@
-import NewWorkOrdersForm from "components/new-work-orders/new-work-orders-form";
+import NavLinks from "components/nav-link";
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { frontendUrl } from "urls";
+
+import { workOrderDetailsLinks } from "components/nav-link/nav-links.definitions";
+import NewWorkOrdersForm from "components/new-work-orders/new-work-orders-form";
+import PageTitle from "components/page-title";
 
 const NewWorkOrder: React.FC = () => {
-  const { code } = useParams<{ code: string }>();
-  console.log(code);
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Link style={{ padding: 8 }} to={frontendUrl.home}>
-          Home
-        </Link>
-        <Link style={{ padding: 8 }} to={frontendUrl.workOrders}>
-          Work Orders
-        </Link>
-      </div>
-
+      <NavLinks items={workOrderDetailsLinks} />
+      <PageTitle title="New Work Order" />
       <NewWorkOrdersForm />
     </>
   );
