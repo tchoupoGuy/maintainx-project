@@ -7,34 +7,39 @@ interface Props {
   id: number;
 }
 const ToggleSwitch: React.FC<Props> = ({ status, id }) => {
-  let isOpen = status === StatusType.OPEN;
+  const initialState = {
+    isOpen: status === StatusType.OPEN,
+    statusToUpdate: status,
+  };
 
-  const [checked, setChecked] = useState(isOpen);
+  const [state, setState] = useState(initialState);
+  const [checked, setChecked] = useState(state.isOpen);
 
   useEffect(() => {
     //update the state on props change
-    setChecked(isOpen);
-  }, [isOpen]);
+    setChecked(state.isOpen);
+  }, [state.isOpen]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
-    let newStatus: string = "";
-    if (isOpen) {
-      newStatus = StatusType.CLOSED;
-    } else {
-      newStatus = StatusType.OPEN;
-    }
-    WorkOrdersServices.updateWorkOrderStatus({ id, status: newStatus });
   };
+
+  useEffect(() => {
+    WorkOrdersServices.updateWorkOrderStatus({
+      id,
+      status: checked ? StatusType.OPEN : StatusType.CLOSED,
+    }).then((result) => {
+      setState({ ...initialState, statusToUpdate: result.status });
+    });
+  }, [checked]);
 
   return (
     <>
-      <label>{status}</label>
+      <label>{state.statusToUpdate}</label>
       <input
+        style={{ width: 15, height: 15 }}
         type="checkbox"
         onChange={(e) => handleChange(e)}
-        id={status}
-        name={status}
         checked={checked}
       ></input>
     </>

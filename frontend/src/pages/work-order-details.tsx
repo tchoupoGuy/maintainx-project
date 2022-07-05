@@ -1,8 +1,11 @@
+import NavLinks from "components/nav-link";
+import { workOrderDetailsLinks } from "components/nav-link/nav-links.definitions";
+import PageTitle from "components/page-title";
 import WorkOrdersDetailsTable from "components/work-orders-details";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import WorkOrdersServices from "services/work-orders.api";
-import { frontendUrl } from "urls";
+
 import { GenericObject, WorkOrderDetailsType } from "utils/types";
 
 const WorkOrderDetails: React.FC = () => {
@@ -23,14 +26,8 @@ const WorkOrderDetails: React.FC = () => {
 
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Link style={{ padding: 8 }} to={frontendUrl.home}>
-          Home
-        </Link>
-        <Link style={{ padding: 8 }} to={frontendUrl.workOrders}>
-          Work Orders
-        </Link>
-      </div>
+      <NavLinks items={workOrderDetailsLinks} />
+      <PageTitle title="Work Orders Details" />
       <div>
         {Object.keys(workOrderDetails).length > 0 ? (
           <WorkOrdersDetailsTable workOrderDetails={workOrderDetails} />

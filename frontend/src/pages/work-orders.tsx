@@ -1,9 +1,13 @@
-import WorkOrdersList from "components/work-orders";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
+import NavLinks from "components/nav-link";
+import { WorkOrdersLinks } from "components/nav-link/nav-links.definitions";
+import WorkOrdersList from "components/work-orders";
+
 import WorkOrdersServices from "services/work-orders.api";
-import { frontendUrl } from "urls";
+
 import { WorkOrder } from "utils/types";
+import PageTitle from "components/page-title";
 
 const WorkOrders: React.FC = () => {
   const [workOrders, setWorkOrders] = useState<WorkOrder[]>([]);
@@ -16,9 +20,8 @@ const WorkOrders: React.FC = () => {
 
   return (
     <>
-      <Link style={{ padding: 8 }} to={frontendUrl.home}>
-        Home
-      </Link>
+      <NavLinks items={WorkOrdersLinks} />
+      <PageTitle title="Work Orders" />
       <WorkOrdersList workOrders={workOrders} />
     </>
   );

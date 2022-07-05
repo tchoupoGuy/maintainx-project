@@ -1,11 +1,13 @@
 const baseUrl = "/api";
 
 export const routesPath = {
-  users: `${baseUrl}/users`,
-  workOrders: `${baseUrl}/work-orders`,
-  workOrdersAssignees: `${baseUrl}/work-orders-assignees`,
-  workOrder: "/workOrderId/:id",
-  user: "/userId/:id",
   defaultPath: "/",
+  users: `${baseUrl}/users`,
+  noAssigneesUsers: `/no-assignees-users`,
+  user: "/userId/:id",
+  createWorkOrder: `${baseUrl}/create-work-orders`,
+  workOrders: `${baseUrl}/work-orders`,
+  workOrder: "/workOrderId/:id",
+  workOrdersAssignees: `${baseUrl}/work-orders-assignees`,
   updateWorkOrderStatus: "/workOrderId/:id/status/:status",
 };

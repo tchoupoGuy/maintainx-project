@@ -4,15 +4,17 @@ import { selectItem, selectItems, updateItem } from "../sqlite/client";
 import { routesPath } from "../urls";
 import { consoleOutPut } from "../utils/console-out-put";
 import { getDate } from "../utils/get-date";
-import { TableName } from "../utils/types";
+import { HttpStatusCode, TableName } from "../utils/types";
 
 const router = express.Router();
 
-// Endpoint to fetch all the work orders in the data base
+//Fetch all the work orders in the data base
+
 router.get(routesPath.defaultPath, async (req, res) => {
   const workOrders = await selectItems({ tableName: TableName.WORK_ORDERS });
 
   res.json(workOrders);
+
   consoleOutPut({
     date: getDate(),
     method: req.method,
@@ -21,7 +23,7 @@ router.get(routesPath.defaultPath, async (req, res) => {
   });
 });
 
-// Endpoint to get the work order with all details in the data base
+// Get the work order with all details in the data base
 router.get(routesPath.workOrder, async (req, res) => {
   // Get list of users
   const allUsers = await selectItems({
@@ -39,8 +41,8 @@ router.get(routesPath.workOrder, async (req, res) => {
   );
 
   // Get list of users assignees to work orders
-  const users = allUsers?.filter(({ id: id }) =>
-    filterWorkOrderAssignees?.some(({ user_id: user_id }) => user_id === id)
+  const users = allUsers?.filter(({ id }) =>
+    filterWorkOrderAssignees?.some(({ user_id }) => user_id === id)
   );
 
   // Get work order by id
@@ -62,6 +64,7 @@ router.get(routesPath.workOrder, async (req, res) => {
   });
 });
 
+// Update Work order status
 router.patch(routesPath.updateWorkOrderStatus, async (req, res) => {
   const workOrder = await selectItem({
     tableName: TableName.WORK_ORDERS,
@@ -76,7 +79,21 @@ router.patch(routesPath.updateWorkOrderStatus, async (req, res) => {
       id: Number(req.params.id),
     });
   }
+  if (res.statusCode === HttpStatusCode.OK) {
+    res.json({
+      id: Number(req.params.id),
+      status: req.params.status,
+    });
+  }
+  consoleOutPut({
+    date: getDate(),
+    method: req.method,
+    path: req.path,
+    status: res.statusCode,
+  });
+});
 
+router.post(routesPath.createWorkOrder, (req, res) => {
   consoleOutPut({
     date: getDate(),
     method: req.method,
