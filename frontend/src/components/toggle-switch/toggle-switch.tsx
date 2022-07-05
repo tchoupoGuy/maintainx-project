@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import WorkOrdersServices from "services/work-orders.api";
 import { StatusType } from "utils/types";
 
@@ -7,10 +7,13 @@ interface Props {
   id: number;
 }
 const ToggleSwitch: React.FC<Props> = ({ status, id }) => {
-  const initialState = {
-    isOpen: status === StatusType.OPEN,
-    statusToUpdate: status,
-  };
+  const initialState = useMemo(() => {
+    const initialStatus = {
+      isOpen: status === StatusType.OPEN,
+      statusToUpdate: status,
+    };
+    return initialStatus;
+  }, [status]);
 
   const [state, setState] = useState(initialState);
   const [checked, setChecked] = useState(state.isOpen);
@@ -31,7 +34,7 @@ const ToggleSwitch: React.FC<Props> = ({ status, id }) => {
     }).then((result) => {
       setState({ ...initialState, statusToUpdate: result.status });
     });
-  }, [checked]);
+  }, [id, initialState, checked]);
 
   return (
     <>

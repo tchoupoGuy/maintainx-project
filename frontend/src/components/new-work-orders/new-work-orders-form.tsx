@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { GenericObject } from "utils/types";
 
 const NewWorkOrdersForm = () => {
-  const [workOrderName, setWorkOrderName] = useState("");
   const [formValues, setFormValues] = useState<GenericObject[]>([
     { name: "", email: "" },
   ]);
