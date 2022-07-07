@@ -1,5 +1,5 @@
 import { WorkOrderGetAllUseCase } from "../../application/use-case/work-order/get-all";
-import { UnitOfWork } from "../../infra/persistence";
+import { UnitOfWork } from "../../infra";
 import { consoleOutPut } from "../../utils/console-out-put";
 import { getDate } from "../../utils/get-date";
 

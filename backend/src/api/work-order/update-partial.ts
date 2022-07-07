@@ -1,6 +1,6 @@
 import { ValidationError } from "../../application/errors";
 import { WorkOrderGetUpdatePartialUseCase } from "../../application/use-case/work-order/update-partial";
-import { UnitOfWork } from "../../infra/persistence";
+import { UnitOfWork } from "../../infra";
 import { consoleOutPut } from "../../utils/console-out-put";
 import { getDate } from "../../utils/get-date";
 

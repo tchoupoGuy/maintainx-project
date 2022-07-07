@@ -1,4 +1,4 @@
-import { UnitOfWork } from "../../../infra/persistence";
+import { UnitOfWork } from "../../../infra";
 import { NewWorkOrder } from "../../../models/work-orders";
 import { IWorkOrderAssigneesRepository } from "../../interface/persistence";
 import { UserCreateUseCase } from "../user/insert";

@@ -1,22 +1,21 @@
-// import { WorkOrderAssigneesInsertUseCase } from "../../application/use-case/work-order-assignees/insert";
-// import { WorkOrderAssigneeSingleInsertUseCase } from "../../application/use-case/work-order-assignees/insert-single";
-// import { WorkOrderInsertUseCase } from "../../application/use-case/work-order/insert";
+import { WorkOrderAssigneeSingleInsertUseCase } from "../../application/use-case/work-order-assignees/insert-single";
 
-// import { UnitOfWork } from "../../infra/persistence";
-// import { consoleOutPut } from "../../utils/console-out-put";
-// import { getDate } from "../../utils/get-date";
+import { UnitOfWork } from "../../infra";
+import { consoleOutPut } from "../../utils/console-out-put";
+import { getDate } from "../../utils/get-date";
 
-// const insertWorkOrderAssignees = WorkOrderAssigneeSingleInsertUseCase({
-//     workOrderAssigneesRepos:UnitOfWork.workOrderAssigneesRepository
-// });
+const insertWorkOrderAssignees = WorkOrderAssigneeSingleInsertUseCase({
+  workOrderAssigneesRepos: UnitOfWork.workOrderAssigneesRepository,
+});
 
-// export const handlerInsertWorkOrderAssignees = async (req: any, res: any) => {
-//    await insertWorkOrderAssignees();
+export const handlerInsertWorkOrderAssignees = async (req: any, res: any) => {
+  const { userId, workOrderId } = req.body;
+  await insertWorkOrderAssignees(workOrderId, userId);
 
-//   consoleOutPut({
-//     date: getDate(),
-//     method: req.method,
-//     path: req.path,
-//     status: res.statusCode,
-//   });
-// };
+  consoleOutPut({
+    date: getDate(),
+    method: req.method,
+    path: req.path,
+    status: res.statusCode,
+  });
+};

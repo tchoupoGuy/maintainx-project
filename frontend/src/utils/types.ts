@@ -36,6 +36,10 @@ export type updateWorkOrderInput = {
   id: number;
   partialItem: Partial<WorkOrder>;
 };
+export type insertWorkOrderInput = {
+  workOrder: WorkOrder;
+  users: User[];
+};
 export type NavLinksType = {
   id: number;
   name: string;

@@ -1,6 +1,6 @@
-import sql from "../../../db";
-import { WorkOrder } from "../../../models/work-orders";
-import { GenericObject } from "../../../utils/types";
+import sql from "../../db";
+import { WorkOrder } from "../../models/work-orders";
+import { GenericObject } from "../../utils/types";
 
 type ItemParams = {
   tableName: string;

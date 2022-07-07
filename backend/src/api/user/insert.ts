@@ -1,6 +1,6 @@
 import { UserCreateUseCase } from "../../application/use-case/user/insert";
 
-import { UnitOfWork } from "../../infra/persistence";
+import { UnitOfWork } from "../../infra";
 import { consoleOutPut } from "../../utils/console-out-put";
 import { getDate } from "../../utils/get-date";
 
