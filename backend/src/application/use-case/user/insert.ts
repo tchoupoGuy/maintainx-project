@@ -24,6 +24,6 @@ export const UserCreateUseCase =
         newUser.some((newUser) => user.email === newUser.email)
       )
       .map((user) => user.id);
-    console.log(filterNewUsersIds, "filterNewUsersIds");
+
     return filterNewUsersIds;
   };

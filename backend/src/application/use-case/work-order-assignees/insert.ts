@@ -23,9 +23,6 @@ export const WorkOrderAssigneesInsertUseCase =
     const newUserIds = await insertUser(users);
     const newWorkOrders = await insertWorkOrder(workOrder);
 
-    console.log(newUserIds, "newUser****");
-    console.log(newWorkOrders, "newWorkOrders****");
-
     const assigneesColumns = `work_order_id, user_id`;
 
     await Promise.all(
