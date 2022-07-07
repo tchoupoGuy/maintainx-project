@@ -16,7 +16,7 @@ const WorkOrdersLinks: NavLinksType[] = [
 ];
 const workOrderDetailsLinks: NavLinksType[] = [
   { id: 1, name: LinkName.HOME, url: frontendUrl.home },
-  { id: 1, name: LinkName.WORK_ORDERS, url: frontendUrl.workOrders },
+  { id: 2, name: LinkName.WORK_ORDERS, url: frontendUrl.workOrders },
 ];
 
 export { homeLinks, WorkOrdersLinks, workOrderDetailsLinks };

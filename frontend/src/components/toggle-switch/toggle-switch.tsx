@@ -16,6 +16,7 @@ const ToggleSwitch: React.FC<Props> = ({ status, id }) => {
   }, [status]);
 
   const [state, setState] = useState(initialState);
+
   const [checked, setChecked] = useState(state.isOpen);
 
   useEffect(() => {
@@ -25,16 +26,15 @@ const ToggleSwitch: React.FC<Props> = ({ status, id }) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
-  };
-
-  useEffect(() => {
     WorkOrdersServices.updateWorkOrderStatus({
       id,
-      status: checked ? StatusType.OPEN : StatusType.CLOSED,
+      partialItem: {
+        status: event.target.checked ? StatusType.OPEN : StatusType.CLOSED,
+      },
     }).then((result) => {
-      setState({ ...initialState, statusToUpdate: result.status });
+      setState({ ...initialState, statusToUpdate: result.partialItem.status });
     });
-  }, [id, initialState, checked]);
+  };
 
   return (
     <>

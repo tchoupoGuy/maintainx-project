@@ -34,7 +34,7 @@ export type ToggleSwitchType = {
 
 export type updateWorkOrderInput = {
   id: number;
-  status: string;
+  partialItem: Partial<WorkOrder>;
 };
 export type NavLinksType = {
   id: number;
