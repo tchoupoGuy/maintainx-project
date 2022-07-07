@@ -13,9 +13,17 @@ export const UserCreateUseCase =
     const usersValues = getUserTuples(newUser);
     const userColumns = "name,email";
 
-    const lastUserId = await userRepos.insert({
+    await userRepos.insert({
       columns: userColumns,
       values: usersValues,
     });
-    return lastUserId;
+
+    const allUser = await userRepos.getAll();
+    const filterNewUsersIds = allUser
+      ?.filter((user) =>
+        newUser.some((newUser) => user.email === newUser.email)
+      )
+      .map((user) => user.id);
+    console.log(filterNewUsersIds, "filterNewUsersIds");
+    return filterNewUsersIds;
   };

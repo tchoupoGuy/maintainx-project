@@ -9,8 +9,8 @@ const insertWorkOrder = WorkOrderInsertUseCase({
 });
 
 export const handlerInsertWorkOrder = async (req: any, res: any) => {
-  const result = await insertWorkOrder(req.body);
-  res.json({ result });
+  const newWorkOrder = await insertWorkOrder(req.body);
+  res.jso(newWorkOrder);
   consoleOutPut({
     date: getDate(),
     method: req.method,

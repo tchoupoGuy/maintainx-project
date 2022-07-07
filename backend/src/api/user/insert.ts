@@ -9,9 +9,8 @@ const insertUser = UserCreateUseCase({
 });
 
 export const handlerInsertUser = async (req: any, res: any) => {
-  const result = await insertUser(req.body);
-  res.json({ result });
-
+  const users = await insertUser(req.body);
+  res.json(users);
   consoleOutPut({
     date: getDate(),
     method: req.method,

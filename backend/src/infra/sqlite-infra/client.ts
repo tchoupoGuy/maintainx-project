@@ -1,6 +1,5 @@
 import sql from "../../db";
 import { WorkOrder } from "../../models/work-orders";
-import { GenericObject } from "../../utils/types";
 
 type ItemParams = {
   tableName: string;
@@ -44,36 +43,8 @@ const updateItem = (params: UpdateItemParams) => {
 
 const insertItem = async (params: InsertParams) => {
   await sql(
-    `INSERT INTO ${params.tableName} (${params.columns}) VALUES ${params.values}; SELECT last_insert_rowid()`
-  );
-};
-const insertItemInnerJoin = async (params: InsertParams) => {
-  await sql(
-    `INSERT INTO ${params.tableName} (${params.columns}) VALUES (${params.values}) 
-     SELECT ${params.tableName}.${params.tableNameId} FROM ${params.innerTableName} 
-     INNER JOIN ${params.tableName} ON ${params.tableName}.${params.tableNameId} = ${params.innerTableName}.${params.innerTableNameId}
-    `
+    `INSERT INTO ${params.tableName} (${params.columns}) VALUES ${params.values}`
   );
 };
 
-const getLastInsertRowId = async (params: InsertParams) => {
-  const response: GenericObject[] = await sql(
-    `BEGIN;
-
-     INSERT INTO ${params.tableName} (${params.columns}) VALUES ${params.values} 
-     SELECT last_insert_rowid()
-    
-    END
-    `
-  );
-  return response[0];
-};
-
-export {
-  selectItem,
-  selectItems,
-  updateItem,
-  getLastInsertRowId,
-  insertItem,
-  insertItemInnerJoin,
-};
+export { selectItem, selectItems, updateItem, insertItem };

@@ -7,6 +7,9 @@
   border: 1px solid #ffffff;
   padding: 16px;
 }
+.work-orders-td-hover:hover {
+  background: #000;
+}
 .work-orders-th {
   background: #000;
   border-radius: 0;

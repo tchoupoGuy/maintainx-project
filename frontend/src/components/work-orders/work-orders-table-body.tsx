@@ -12,7 +12,7 @@ export const WorkOrdersTableBody: React.FC<Props> = ({ workOrder }) => {
   return (
     <tbody className="work-orders-tbody">
       <tr className="work-orders-tr">
-        <td className="work-orders-td" align="left">
+        <td className="work-orders-td work-orders-td-hover " align="left">
           <Link
             to={`${frontendUrl.workOrders}/${workOrder?.id}`}
             className="work-orders-link"

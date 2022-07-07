@@ -19,15 +19,24 @@ export const WorkOrderAssigneesInsertUseCase =
   ({ workOrderAssigneesRepos }: WorkOrderAssigneesInsertDeps) =>
   async (newWorkOrder: NewWorkOrder) => {
     const { users, workOrder } = newWorkOrder;
-    const lastUserId = await insertUser(users);
-    const lastWorkOrderId = await insertWorkOrder(workOrder);
-    const assigneesColumns = `work_order_id, user_id`;
-    const assigneesValues = `("${Number(lastWorkOrderId)}", "${Number(
-      lastUserId
-    )}")`;
 
-    await workOrderAssigneesRepos.insert({
-      columns: assigneesColumns,
-      values: assigneesValues,
-    });
+    const newUserIds = await insertUser(users);
+    const newWorkOrders = await insertWorkOrder(workOrder);
+
+    console.log(newUserIds, "newUser****");
+    console.log(newWorkOrders, "newWorkOrders****");
+
+    const assigneesColumns = `work_order_id, user_id`;
+
+    await Promise.all(
+      (newUserIds as number[]).map(async (userId) => {
+        const assigneesValues = `("${Number(newWorkOrders?.id)}", "${Number(
+          userId
+        )}")`;
+        await workOrderAssigneesRepos.insert({
+          columns: assigneesColumns,
+          values: assigneesValues,
+        });
+      })
+    );
   };

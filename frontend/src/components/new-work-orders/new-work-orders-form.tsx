@@ -1,5 +1,5 @@
 import "./new-work-order-form.css";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { GenericObject, User, WorkOrder } from "utils/types";
 import WorkOrdersServices from "services/work-orders.api";
 
@@ -27,7 +27,7 @@ const NewWorkOrdersForm = () => {
   };
 
   let handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    // event.preventDefault();
     const emails = users.map((user) => user.email);
     const filtered = users.filter(
       ({ email }, index) => !emails.includes(email, index + 1)
@@ -47,12 +47,10 @@ const NewWorkOrdersForm = () => {
   };
 
   const handleChangeWorkOrder = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
+    // e.preventDefault();
     setWorkOrder(e.target.value);
   };
-  const inputRef = useRef(null);
-  console.log(inputRef.current, "inputRef");
-  document.querySelector('input[name="email"]');
+
   return (
     <>
       <div className="c-new-work-order-form">
@@ -89,7 +87,6 @@ const NewWorkOrdersForm = () => {
                 className="email-input"
                 placeholder="email"
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                ref={inputRef}
                 value={element.email || ""}
                 onChange={(e) => handleChange(index, e)}
               />

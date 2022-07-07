@@ -12,9 +12,13 @@ export const WorkOrderInsertUseCase =
     const worOrderColumns = "name,status";
     const worOrderValues = `("${name}","OPEN")`;
 
-    const lastWorkOrderId = await workOrderRepos.insert({
+    await workOrderRepos.insert({
       columns: worOrderColumns,
       values: worOrderValues,
     });
-    return lastWorkOrderId;
+    const allWorkOrder = await workOrderRepos.getAll();
+    const filterNewWorkOrder = allWorkOrder?.filter(
+      (workOrder) => workOrder.name === name
+    )[0];
+    return filterNewWorkOrder;
   };
