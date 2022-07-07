@@ -27,27 +27,28 @@ const NewWorkOrdersForm = () => {
   };
 
   let handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-    // event.preventDefault();
+    event.preventDefault();
     const emails = users.map((user) => user.email);
     const filtered = users.filter(
       ({ email }, index) => !emails.includes(email, index + 1)
     );
-    const filtere = users.filter(({ email }, index) =>
+    const filterDuplicate = users.filter(({ email }, index) =>
       emails.includes(email, index + 1)
     );
-    if (filtere.length) {
-      setErrorMessage("can not add double user");
+    if (filterDuplicate.length) {
+      alert("can not add double user");
+    } else if (!filtered.length) {
+      alert("User is required");
     } else {
       WorkOrdersServices.insertWorkOrder({
         users: filtered as User[],
         workOrder: { name: workOrder } as WorkOrder,
       });
-      setErrorMessage("");
     }
   };
 
   const handleChangeWorkOrder = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // e.preventDefault();
+    e.preventDefault();
     setWorkOrder(e.target.value);
   };
 
