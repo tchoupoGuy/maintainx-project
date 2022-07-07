@@ -1,8 +1,7 @@
-import { IUserRepository } from "../../../application/interface/persistence";
-import { User } from "../../../models/user";
-import { InsertWorkOrderType } from "../../../models/work-orders";
-
-import { TableName } from "../../../utils/types";
+import { IUserRepository } from "../../application/interface/persistence";
+import { User } from "../../models/user";
+import { InsertWorkOrderType } from "../../models/work-orders";
+import { TableName } from "../../utils/types";
 import { insertItem, selectItem, selectItems } from "./client";
 const { USERS } = TableName;
 

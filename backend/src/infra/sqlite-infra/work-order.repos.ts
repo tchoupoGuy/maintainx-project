@@ -1,7 +1,6 @@
-import { IWorkOrderRepository } from "../../../application/interface/persistence";
-import { InsertWorkOrderType, WorkOrder } from "../../../models/work-orders";
-
-import { TableName } from "../../../utils/types";
+import { IWorkOrderRepository } from "../../application/interface/persistence";
+import { InsertWorkOrderType, WorkOrder } from "../../models/work-orders";
+import { TableName } from "../../utils/types";
 import { insertItem, selectItem, selectItems, updateItem } from "./client";
 const { WORK_ORDERS } = TableName;
 

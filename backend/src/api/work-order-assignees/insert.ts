@@ -1,6 +1,6 @@
 import { WorkOrderAssigneesInsertUseCase } from "../../application/use-case/work-order-assignees/insert";
+import { UnitOfWork } from "../../infra";
 
-import { UnitOfWork } from "../../infra/persistence";
 import { consoleOutPut } from "../../utils/console-out-put";
 import { getDate } from "../../utils/get-date";
 
