@@ -1,57 +1,17 @@
 import express from "express";
+import { handlerGetAllUser } from "../api/user/get-all";
+import { handlerGetUserById } from "../api/user/get-by-id";
+import { handlerGetNoAssignedUsers } from "../api/user/get-no-assigned";
+import { handlerInsertUser } from "../api/user/insert";
 
-import { selectItem, selectItems } from "../sqlite/client";
 import { routesPath } from "../urls";
-import { consoleOutPut } from "../utils/console-out-put";
-import { getDate } from "../utils/get-date";
-import { TableName } from "../utils/types";
 
 const router = express.Router();
 
-router.get(routesPath.defaultPath, async (req, res) => {
-  const users = await selectItems({ tableName: TableName.USERS });
+router.get(routesPath.defaultPath, handlerGetAllUser);
 
-  res.json(users);
-  consoleOutPut({
-    date: getDate(),
-    method: req.method,
-    path: req.path,
-    status: res.statusCode,
-  });
-});
-
-router.get(routesPath.noAssigneesUsers, async (req, res) => {
-  const users = await selectItems({ tableName: TableName.USERS });
-
-  const workOrdersAssignees = await selectItems({
-    tableName: TableName.WORK_ORDERS_ASSIGNEES,
-  });
-
-  const noAssigneesUsers = users.filter(
-    ({ id }) => !workOrdersAssignees.some(({ user_id }) => user_id === id)
-  );
-
-  res.json(noAssigneesUsers);
-  consoleOutPut({
-    date: getDate(),
-    method: req.method,
-    path: req.path,
-    status: res.statusCode,
-  });
-});
-
-router.get(routesPath.user, async (req, res) => {
-  const users = await selectItem({
-    tableName: TableName.USERS,
-    id: Number(req.params.id),
-  });
-  res.json(users);
-  consoleOutPut({
-    date: getDate(),
-    method: req.method,
-    path: req.path,
-    status: res.statusCode,
-  });
-});
+router.get(routesPath.user, handlerGetUserById);
+router.get(routesPath.insertUser, handlerInsertUser);
+router.get(routesPath.noAssigneesUsers, handlerGetNoAssignedUsers);
 
 export default router;

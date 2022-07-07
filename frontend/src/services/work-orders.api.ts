@@ -34,19 +34,17 @@ class WorkOrdersServices {
   };
   static updateWorkOrderStatus = async ({
     id,
-    status,
+    partialItem,
   }: updateWorkOrderInput) => {
     const requestOptions = {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(partialItem),
     };
 
-    return await fetch(
-      `${backendUrl.workOrders}/workOrderId/${id}/status/${status}`,
-      {
-        ...requestOptions,
-      }
-    )
+    return await fetch(`${backendUrl.workOrders}/workOrderId/${id}/patch`, {
+      ...requestOptions,
+    })
       .then(async (response: any) => {
         return await response.json();
       })

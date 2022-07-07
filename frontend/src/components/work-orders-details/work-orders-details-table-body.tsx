@@ -19,10 +19,7 @@ export const WorkOrdersDetailsTableBody: React.FC<Props> = ({
     <tbody className="work-orders-tbody">
       <tr className="work-orders-tr">
         <td className="work-orders-td">{workOrder?.name}</td>
-        <td className="work-orders-td">
-          {/* {workOrder?.status} */}
-          {workOrderStatus}
-        </td>
+        <td className="work-orders-td">{workOrderStatus}</td>
       </tr>
       <tr className="work-orders-tr">
         <th className="work-orders-th" colSpan={2}>
