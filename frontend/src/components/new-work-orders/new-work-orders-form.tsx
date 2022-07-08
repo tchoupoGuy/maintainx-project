@@ -77,6 +77,7 @@ const NewWorkOrdersForm = () => {
                   name="name"
                   className="name-input"
                   placeholder="Name"
+                  required
                   value={element.name || ""}
                   onChange={(e) => handleChange(index, e)}
                 />
