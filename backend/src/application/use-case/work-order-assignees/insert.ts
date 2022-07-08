@@ -25,7 +25,7 @@ export const WorkOrderAssigneesInsertUseCase =
 
     const newWorkOrders = await insertWorkOrder(workOrder);
 
-    if (newUserIds.length > 0) {
+    if (Array.isArray(users) && users.length > 0) {
       newUserIds = await insertUser(users);
       await Promise.all(
         (newUserIds as number[]).map(async (userId) => {
