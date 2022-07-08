@@ -67,43 +67,38 @@ const NewWorkOrdersForm = () => {
           </div>
           <p>Add List of assignees</p>
 
-          {
-            // Array.isArray(users) && users.length > 1
-            // ?
-            users.map((element, index) => (
-              <div className="form-inline" key={index}>
-                <input
-                  type="text"
-                  name="name"
-                  className="name-input"
-                  placeholder="Name"
-                  required
-                  value={element.name || ""}
-                  onChange={(e) => handleChange(index, e)}
-                />
+          {users.map((element, index) => (
+            <div className="form-inline" key={index}>
+              <input
+                type="text"
+                name="name"
+                className="name-input"
+                placeholder="Name"
+                required
+                value={element.name || ""}
+                onChange={(e) => handleChange(index, e)}
+              />
 
-                <input
-                  type="email"
-                  name="email"
-                  id={`email${index}`}
-                  className="email-input"
-                  placeholder="email"
-                  required
-                  value={element.email || ""}
-                  onChange={(e) => handleChange(index, e)}
-                />
+              <input
+                type="email"
+                name="email"
+                id={`email${index}`}
+                className="email-input"
+                placeholder="email"
+                required
+                value={element.email || ""}
+                onChange={(e) => handleChange(index, e)}
+              />
 
-                <button
-                  type="button"
-                  className={`c-button button-remove`}
-                  onClick={() => removeFormFields(index)}
-                >
-                  -
-                </button>
-              </div>
-            ))
-            // : null
-          }
+              <button
+                type="button"
+                className={`c-button button-remove`}
+                onClick={() => removeFormFields(index)}
+              >
+                -
+              </button>
+            </div>
+          ))}
           <div className="button-add-container">
             <button
               className="c-button button-add"
