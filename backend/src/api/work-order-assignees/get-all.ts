@@ -2,7 +2,7 @@ import { WorkOrderAssigneesGetAllUseCase } from "../../application/use-case/work
 
 import { UnitOfWork } from "../../infra";
 import { consoleOutPut } from "../../utils/console-out-put";
-import { getDate } from "../../utils/get-date";
+import { currentDate } from "../../utils/current-date";
 
 const getAllWorkOrderAssignees = WorkOrderAssigneesGetAllUseCase({
   workOrderAssigneesRepos: UnitOfWork.workOrderAssigneesRepository,
@@ -13,7 +13,7 @@ export const handlerGetAllWorkOrderAssignees = async (req: any, res: any) => {
 
   res.json(workOrdersAssignees);
   consoleOutPut({
-    date: getDate(),
+    date: currentDate(),
     method: req.method,
     path: req.path,
     status: res.statusCode,

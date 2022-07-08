@@ -2,7 +2,7 @@ import { ValidationError } from "../../application/errors";
 import { WorkOrderGetUpdatePartialUseCase } from "../../application/use-case/work-order/update-partial";
 import { UnitOfWork } from "../../infra";
 import { consoleOutPut } from "../../utils/console-out-put";
-import { getDate } from "../../utils/get-date";
+import { currentDate } from "../../utils/current-date";
 
 const updateWorkOrderPartial = WorkOrderGetUpdatePartialUseCase({
   workOrderRepos: UnitOfWork.workOrderRepository,
@@ -17,7 +17,7 @@ export const handlerUpdateWorkOrderPartial = async (req: any, res: any) => {
 
   res.json(workOrderPartial);
   consoleOutPut({
-    date: getDate(),
+    date: currentDate(),
     method: req.method,
     path: req.path,
     status: res.statusCode,

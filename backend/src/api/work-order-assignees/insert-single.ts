@@ -2,7 +2,7 @@ import { WorkOrderAssigneeSingleInsertUseCase } from "../../application/use-case
 
 import { UnitOfWork } from "../../infra";
 import { consoleOutPut } from "../../utils/console-out-put";
-import { getDate } from "../../utils/get-date";
+import { currentDate } from "../../utils/current-date";
 
 const insertWorkOrderAssignees = WorkOrderAssigneeSingleInsertUseCase({
   workOrderAssigneesRepos: UnitOfWork.workOrderAssigneesRepository,
@@ -13,7 +13,7 @@ export const handlerInsertWorkOrderAssignees = async (req: any, res: any) => {
   await insertWorkOrderAssignees(workOrderId, userId);
 
   consoleOutPut({
-    date: getDate(),
+    date: currentDate(),
     method: req.method,
     path: req.path,
     status: res.statusCode,
