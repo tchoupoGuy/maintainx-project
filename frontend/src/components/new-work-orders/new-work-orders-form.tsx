@@ -8,7 +8,6 @@ const NewWorkOrdersForm = () => {
     { name: "", email: "" },
   ]);
   const [workOrder, setWorkOrder] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState("");
 
   let handleChange = (i: number, e: React.ChangeEvent<HTMLInputElement>) => {
     let newUsers = [...users];
@@ -44,6 +43,9 @@ const NewWorkOrdersForm = () => {
         users: filtered as User[],
         workOrder: { name: workOrder } as WorkOrder,
       });
+
+      event.target.reset();
+      alert("Work Order has been send successfully");
     }
   };
 
@@ -68,7 +70,7 @@ const NewWorkOrdersForm = () => {
             />
           </div>
           <p>Add List of assignees</p>
-          <p>{errorMessage}</p>
+
           {users.map((element, index) => (
             <div className="form-inline" key={index}>
               <input
@@ -87,7 +89,7 @@ const NewWorkOrdersForm = () => {
                 id={`email${index}`}
                 className="email-input"
                 placeholder="email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                required
                 value={element.email || ""}
                 onChange={(e) => handleChange(index, e)}
               />
